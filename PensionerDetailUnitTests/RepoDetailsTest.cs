@@ -38,19 +38,19 @@ namespace PensionerDetailUnitTests
         [TestCase("111122223333")]
         public void PensionerDetailByAadhar_Returns_object(string aadhar)
         {
-           
+
             Mock<IPensionerdetail> mock = new Mock<IPensionerdetail>();
 
-            mock.Setup(p => p.GetDetailsCsv()).Returns(details);
+            mock.Setup(p => p.PensionerDetailByAadhar(aadhar)).Returns(details[0]);
 
-            PensionerRepository pro = new PensionerRepository();
+            //PensionerRepository pro = new PensionerRepository();
 
             //details = pro.GetDetailsCsv();
 
-            PensionerDetail a = pro.PensionerDetailByAadhar(aadhar);
+            PensionerDetail a = mock.Object.PensionerDetailByAadhar(aadhar);
 
             Assert.IsNotNull(a);
-            
+
         }
 
         [TestCase("111122823333")]
@@ -59,13 +59,14 @@ namespace PensionerDetailUnitTests
 
             Mock<IPensionerdetail> mock = new Mock<IPensionerdetail>();
 
-            mock.Setup(p => p.GetDetailsCsv()).Returns(details);
+            PensionerDetail pen = null;
+            mock.Setup(p => p.PensionerDetailByAadhar(aadhar)).Returns(pen);
 
-            PensionerRepository pro = new PensionerRepository();
+            //PensionerRepository pro = new PensionerRepository();
 
             //details = pro.GetDetailsCsv();
 
-            PensionerDetail a = pro.PensionerDetailByAadhar(aadhar);
+            PensionerDetail a = mock.Object.PensionerDetailByAadhar(aadhar);
 
             Assert.IsNull(a);
 
